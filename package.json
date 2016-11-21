@@ -20,13 +20,11 @@
     "start": "NODE_ENV=development nodemon --exec babel-node server",
     "build": "NODE_ENV=production node server-es5",
     "default": "NODE_ENV=production node server-es5",
-
     "preclient": "npm run clean-dist && npm run build-server",
     "preserver": "npm run build-client",
     "prestart": "npm run clean-dist",
     "prebuild": "npm run clean-dist && npm run build-server",
     "predefault": "npm run clean-dist",
-
     "clean-dist": "rimraf dist",
     "build-client": "NODE_ENV=dev-for-server webpack -p --progress --colors",
     "build-server": "babel server --out-dir server-es5"
@@ -54,7 +52,7 @@
     "rimraf": "^2.5.4",
     "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",
-    "webpack": "~1.12.*",
+    "webpack": "^1.13.3",
     "webpack-dev-middleware": "^1.8.4",
     "webpack-dev-server": "~1.14.*",
     "webpack-hot-middleware": "^2.13.1"
