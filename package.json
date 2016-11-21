@@ -1,7 +1,7 @@
 {
   "name": "pinch-my-face",
   "version": "1.0.0",
-  "description": "",
+  "description": "Use RxJS and Node to create a simple game to upload and play your face photo",
   "author": "Matt CP Chen",
   "license": "ISC",
   "main": "server-es5/index.js",
@@ -35,7 +35,9 @@
     "express": "^4.14.0",
     "jimp": "^0.2.27",
     "method-override": "^2.3.6",
-    "rxjs": "^5.0.0-rc.1",
+    "rxjs": "^5.0.0-rc.1"
+  },
+  "devDependencies": {
     "babel-cli": "^6.18.0",
     "babel-core": "~6.7.*",
     "babel-loader": "~6.2.*",
@@ -54,7 +56,5 @@
     "webpack-dev-middleware": "^1.8.4",
     "webpack-dev-server": "~1.14.*",
     "webpack-hot-middleware": "^2.13.1"
-  },
-  "devDependencies": {
   }
 }
