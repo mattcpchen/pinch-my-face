@@ -5,6 +5,14 @@
   "author": "Matt CP Chen",
   "license": "ISC",
   "main": "server.js",
+  "engines": {
+    "node": "4.3.0",
+    "npm": "2.14.12"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mattcpchen/pinch-my-face.git"
+  },
   "scripts": {
     "webpack": "webpack-dev-server --progress",
     "client": "NODE_ENV=dev-for-client node server-es5",
@@ -22,15 +30,6 @@
     "clean-dist": "rimraf dist",
     "build-client": "NODE_ENV=dev-for-server webpack -p --progress --colors",
     "build-server": "babel server --out-dir server-es5"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/mattcpchen/pinch-my-face.git"
-  },
-  "engineStrict": true,
-  "engines": {
-    "node": "~4.3.0",
-    "npm": "~2.14.12"
   },
   "dependencies": {
     "body-parser": "^1.15.2",
