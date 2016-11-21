@@ -23,6 +23,15 @@
     "build-client": "NODE_ENV=dev-for-server webpack -p --progress --colors",
     "build-server": "babel server --out-dir server-es5"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mattcpchen/pinch-my-face.git"
+  },
+  "engineStrict": true,
+  "engines": {
+    "node": "~4.3.0",
+    "npm": "~2.14.12"
+  },
   "dependencies": {
     "body-parser": "^1.15.2",
     "errorhandler": "^1.4.3",
