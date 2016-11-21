@@ -24,11 +24,3 @@ router.post('/upload_api/upload', photoCtrl.uploadPhoto);
 
 
 module.exports = router;
-
-
-
-
-
-
-
-module.exports = router;
