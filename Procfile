@@ -1,1 +1,1 @@
-web: NODE_ENV=production node server-es5/index.js
+web: npm run build
