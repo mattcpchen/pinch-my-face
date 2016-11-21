@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <!-- +++++++++++++++++++++++ -->
+    <div id="pinchMyFace">
+      <div class="titleHolder">
+        <div id="title">
+          <span class="titleHighlight" id="animeStyleBtn">PinCh</span> - my - face
+        </div>
+      </div>
+
+      <div class="pmfStage">
+        <div class="arrow" id="arrowLeft">
+          <div class="inner-arrow inner-arrow-left"></div>
+        </div>
+
+        <div id="allPhotos">
+          <div id="instruction">
+            <div class="title">[ INSTRUCTION ]</div>
+            <ul>
+              <li>Click "Next" and "Back" arrow to choose from our default photos.</li>
+              <li>Click "UPLOAD" to upload your own photo.</li>
+              <li>Toggle between "SQUEEZE" or "GRAB" mode by clicking title bar.</li>
+              <li>Toggle "GRID" to show/hide info grid.</li>
+              <li>Use Key (only 3x3 AND grid is on) or Mouse to pinch the photo.</li>
+              <li>Click "START" to start the game.</li>
+            </ul>
+            <div class="startBtnHolder">
+              <button class="button" id="startBtn">START</button>
+            </div>
+          </div>
+          <div id="uploadPhotoHolder">
+            <img id="uploadPhoto">
+            <div id="uploadPhotoCover">
+              <div class="greyCover"><div class="centerHole"></div></div>
+              <div class="innerShadow"></div>
+              <div class="whiteOutline"></div>
+            </div>
+          </div>
+          <div id="photoBGHolder">
+            <div id="photoBG"></div>
+          </div>
+          <div id="faceBoxes"></div>
+        </div>
+
+        <div class="arrow" id="arrowRight">
+          <div class="inner-arrow inner-arrow-right"></div>
+        </div>
+      </div>
+
+      <div id="playCtrls">
+        <form>
+          <input type="file" name="file" id="uploadPhotoFile">
+          <label for="uploadPhotoFile" class="button upload">UPLOAD</label>
+        </form>
+
+        <button class="button grid grid-off" id="gridBtn" disabled>GRID</button>
+        <select class="dropdown" id="sizeDropdown">
+          <option value="3x3">3x3</option>
+          <option value="5x5">5x5</option>
+          <option value="7x7">7x7</option>
+          <option value="9x9">9x9</option>
+        </select>
+      </div>
+      <div id="uploadCtrls">
+        <button class="button" id="uploadOK">OK</button>
+        <button class="button" id="uploadCancel">Cancel</button>
+      </div>
+    </div>
+
+    <div id="pinchMyFaceOverlay">
+      <div class="centerHole"></div>
+    </div>
+    <!-- +++++++++++++++++++++++ -->
+    <script src="bundle.js"></script>
+  </body>
+</html>

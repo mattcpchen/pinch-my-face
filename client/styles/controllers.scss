@@ -1,0 +1,63 @@
+#playCtrls, #uploadCtrls {
+  padding: 0 50px;
+  position: relative;
+}
+#playCtrls {
+  form {
+    display: inline-block;
+
+    #uploadPhotoFile {
+      display: none;
+    }
+
+    .upload {
+      width: 70px;
+      height: 30px;
+      line-height: 30px;
+    }
+  }
+
+  #sizeDropdown {
+    float: right;
+    margin-top: 7.5px;
+    margin-right: 10px;
+  }
+
+  #gridBtn {
+    float: right;
+    opacity: 0.5;
+    margin-top: 7.5px;
+    cursor: default;
+
+    &.grid-on {
+      color: #fff;
+      background-color: $pmfBlue;
+      border: 1px solid #fff;
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.7), 0 0 0 4px rgba(200, 200, 200, 0.7);
+    }
+    &.grid-off {
+      color: $pmfBlue;
+      background-color: #fff;
+      border: 1px solid $pmfBlue;
+      text-decoration: line-through;
+    }
+  }
+}
+
+
+
+
+#uploadCtrls {
+  #uploadOK {
+    width: 100px;
+    height: 40px;
+  }
+  #uploadCancel {
+    width: 100px;
+    color: $pmfBlue;
+    background-color: #fff;
+    border: 1px solid $pmfBlue;
+    float: right;
+    margin-top: 7.5px;
+  }
+}

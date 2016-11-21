@@ -1,0 +1,103 @@
+$pmfBlue: #085397;
+$pmfGreen: #47a216;
+@mixin boxShadow($shadow) {
+  -webkit-box-shadow: $shadow;
+  -moz-box-shadow: $shadow;
+  -ms-box-shadow: $shadow;
+  box-shadow: $shadow;
+}
+@import 'styles/title';
+@import 'styles/allPhotos';
+@import 'styles/controllers';
+
+html, body {
+  background-color: #000;
+  font-family: Helvetica;
+  font-weight: normal;
+  font-size: 16px;
+  font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  -osx-moz-font-smoothing: antialiased;
+  margin: 0;
+  padding: 0;
+}
+li {
+  margin: 5px 10px 5px 0;
+  font-size: 14px;
+}
+#pinchMyFace {
+  position:relative;
+  margin: 0 auto;
+  display: none;
+}
+#pinchMyFaceOverlay {
+  position: absolute;
+  background-repeat: no-repeat;
+  top: -1px;
+  left: -1px;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  .centerHole {
+    position: relative;
+    left: 0px;
+    top: 0px;
+    margin: auto;
+    width: 600px;
+    height: 600px;
+    box-shadow: 0 0 0 99999px rgba(0, 0, 0, 1);
+  }
+}
+.button {
+  color: #fff;
+  background-color: $pmfBlue;
+  border: 1px solid #fff;
+  padding: 5px 15px;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  cursor: pointer;
+}
+.dropdown {
+  width: 100px;
+  height:25px;
+  font-size: 12px;
+  background-color: #fff;
+  color: $pmfBlue;
+  border: 1px solid $pmfBlue;
+}
+.arrow{
+  width: 0px;
+  height: 0px;
+  border-top: 30px solid transparent;
+  border-bottom: 30px solid transparent;
+  border-left: 0 solid #fff;
+  border-right: 0 solid #fff;
+  display: inline-block;
+  margin-bottom: 35px;
+  position: relative;
+  z-index: 100;
+  cursor: pointer;
+
+  &#arrowLeft { border-right-width: 30px; margin-right: 15px; }
+  &#arrowRight { border-left-width: 30px; margin-left: 15px; }
+
+  .inner-arrow {
+    position: relative;
+    top: -27px;
+    width: 0;
+    height: 0;
+    border-top: 27px solid transparent;
+    border-bottom: 27px solid transparent;
+    border-right: 0 solid $pmfBlue;
+    border-left: 0 solid $pmfBlue;
+
+    &.inner-arrow-left { left: 2px; border-right-width: 27px; }
+    &.inner-arrow-right { right: 29px; border-left-width: 27px; }
+  }
+}
+
+

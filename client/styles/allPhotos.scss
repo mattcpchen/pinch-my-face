@@ -1,0 +1,110 @@
+#allPhotos {
+  margin: 100px 0 15px 0;
+  position: relative;
+  display: inline-block;
+
+  #instruction {
+    color: #fff;
+    background-color: #000;
+    border: 1px solid #fff;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+
+    .title {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 20px;
+      font-weight:600;
+    }
+    .startBtnHolder {
+      position:relative;
+      width: 100px;
+      margin: 0 auto;
+
+      .button {
+        width: 100%;
+      }
+    }
+  }
+
+  #uploadPhotoHolder {
+    position: absolute;
+    width: 600px;
+    height:600px;
+    top: -100px;
+    left: -150px;
+
+    #uploadPhoto {
+      position: absolute;
+      background-repeat: no-repeat;
+      top: 0px;
+      left: 0px;
+    }
+
+    #uploadPhotoCover {
+      pointer-events: none;
+      .greyCover {
+        position: absolute;
+        background-repeat: no-repeat;
+        width: 100%;
+        height: 100%;
+        .centerHole {
+          position: absolute;
+          width: 300px;
+          height: 300px;
+          left: 150px;
+          top: 100px;
+          @include boxShadow(0 0 0 99999px rgba(0, 0, 0, 0.5));
+        }
+      }
+      .innerShadow {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        @include boxShadow(inset 0px 0px 50px 30px #000);
+      }
+      .whiteOutline {
+        position: absolute;
+        border: 1px solid #ccc;
+        width: 300px;
+        height: 300px;
+        left: 150px;
+        top: 100px;
+      }
+    }
+  }
+
+  #photoBGHolder {
+    position: absolute;
+    width: 600px;
+    height:600px;
+    top: -100px;
+    left: -150px;
+
+    #photoBG {
+      background-repeat: no-repeat;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  #faceBoxes {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.5);
+  }
+  .faceBox {
+    background-repeat: no-repeat;
+    position: absolute;
+    cursor: pointer;
+
+    .faceBoxNum {
+      color: rgba(255, 255, 255, 0.8);
+      font-weight: 600;
+      margin: 10px;
+      pointer-events: none;
+    }
+  }
+}
