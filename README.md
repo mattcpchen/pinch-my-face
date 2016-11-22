@@ -11,3 +11,6 @@ Just a fun project to use RxJS and create a simple game to upload your face and 
     <li><b>npm run build:dist</b>: build the dist folder for production</li>
     <li><b>npm run build</b>: build and run</li>
 </ul>
+
+
+https://codeship.com/projects/7d665780-92a6-0134-a27e-6275a8302a8a/status?branch=master
