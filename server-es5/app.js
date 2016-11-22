@@ -22,11 +22,12 @@ module.exports = function () {
 
   app.use(methodOverride());
 
-  // webpack
-  if (app.get('env') !== 'dev-for-server') {
+  // webpack with HMR
+  if (app.get('env') == 'devForClient' || app.get('env') == 'development') {
     var webpack = require('webpack');
     var webpackConfig = require('../webpack.config');
     var compiler = webpack(webpackConfig);
+
     app.use(require('webpack-dev-middleware')(compiler, {
       noInfo: true,
       publicPath: webpackConfig.output.publicPath
