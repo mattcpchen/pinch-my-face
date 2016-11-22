@@ -3,6 +3,9 @@ Just a fun project to use RxJS and create a simple game to upload your face and 
 
 ![Screenshot_01](/public/assets/readme_01.jpg?raw=true)
 ![Screenshot_02](/public/assets/readme_02.jpg?raw=true)
+
+https://pinch-my-face.herokuapp.com/
+
 ## Getting Started
 <ul>
     <li><b>npm run start:client</b>: development for client only</li>
