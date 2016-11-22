@@ -20,16 +20,16 @@ module.exports = {
 };
 
 function clearTmpFolder(req, res) {
-  var tmpFolderPath = 'public/images/tmp/';
-  _fs2.default.readdir(tmpFolderPath, function (err, files) {
-    if (err) throw err;
-    files.forEach(function (item, index, array) {
-      _fs2.default.unlink(tmpFolderPath + item, function (err) {
-        if (err) throw err;
-        console.log('===> ', item + ' deleted');
-      });
-    });
-  });
+  // const tmpFolderPath = 'public/images/tmp/';
+  // fs.readdir(tmpFolderPath, (err,files) => {
+  //   if (err) throw err;
+  //   files.forEach((item, index, array) => {
+  //     fs.unlink(tmpFolderPath + item, function(err){
+  //       if (err) throw err;
+  //       console.log('===> ', item + ' deleted');
+  //     });
+  //   });
+  // });
 }
 
 function uploadPhoto(req, res) {
