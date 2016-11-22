@@ -14,16 +14,16 @@ module.exports = {
 
 
 function clearTmpFolder(req, res) {
-  // const tmpFolderPath = 'public/images/tmp/';
-  // fs.readdir(tmpFolderPath, (err,files) => {
-  //   if (err) throw err;
-  //   files.forEach((item, index, array) => {
-  //     fs.unlink(tmpFolderPath + item, function(err){
-  //       if (err) throw err;
-  //       console.log('===> ', item + ' deleted');
-  //     });
-  //   });
-  // });
+  const tmpFolderPath = 'public/images/tmp/';
+  fs.readdir(tmpFolderPath, (err,files) => {
+    if (err) throw err;
+    files.forEach((item, index, array) => {
+      fs.unlink(tmpFolderPath + item, function(err){
+        if (err) throw err;
+        console.log('===> ', item + ' deleted');
+      });
+    });
+  });
 }
 
 
