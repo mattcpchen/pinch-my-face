@@ -43,9 +43,7 @@ var config = {
 
 
 // If bundling for production, optimize output
-
-
-if (process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'dev-for-server') {
+if (process.env.NODE_ENV === 'production') {
   config.devtool = false;
   config.plugins = config.plugins.concat([
     new webpack.optimize.OccurenceOrderPlugin(),

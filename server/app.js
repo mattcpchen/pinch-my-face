@@ -20,11 +20,12 @@ module.exports = function() {
   
   app.use(methodOverride());
   
-  // webpack
-  if(app.get('env') !=='dev-for-server') {
+  // webpack with HMR
+  if(app.get('env') =='devForClient' || app.get('env') =='development') {
     const webpack = require('webpack');
     const webpackConfig = require('../webpack.config');
     const compiler = webpack(webpackConfig);
+    
     app.use(require('webpack-dev-middleware')(compiler, {
       noInfo: true,
       publicPath: webpackConfig.output.publicPath
@@ -36,7 +37,9 @@ module.exports = function() {
   app.use(require('./routes'));
   
   
-  if (app.get('env') !== 'production') {
+  if (app.get('env') === 'devForClient' ||
+      app.get('env') === 'devForServer' ||
+      app.get('env') === 'development') {
     app.use(errorHandler());
   }
   

@@ -35,5 +35,3 @@ router.post('/upload_api/clear', _photoCtrl2.default.clearTmpFolder);
 router.post('/upload_api/upload', _photoCtrl2.default.uploadPhoto);
 
 module.exports = router;
-
-module.exports = router;

@@ -12,9 +12,6 @@ import { clickUploadBtn$, uploadAndDragPhoto$ } from './components/uploadPhoto/p
 import { clickToUploadANewPhoto$, clickToCancelUpload } from './components/uploadPhoto/uploadPhoto';
 
 
-
-
-
 helpers.initAllUI(INIT_FACE_SETTINGS.totalWidth, INIT_FACE_SETTINGS.totalHeight);
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
