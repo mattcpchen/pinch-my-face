@@ -3,7 +3,7 @@ const app = require('./app')();
 
 
 
-app.listen(app.get('port'), 'localhost', function(err) {
+app.listen(app.get('port'), function(err) {
   if (err) {
     console.log(err);
     return;

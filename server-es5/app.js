@@ -38,7 +38,7 @@ module.exports = function () {
   // routes
   app.use(require('./routes'));
 
-  if (app.get('env') !== 'production') {
+  if (app.get('env') === 'devForClient' || app.get('env') === 'devForServer' || app.get('env') === 'development') {
     app.use(errorHandler());
   }
 
