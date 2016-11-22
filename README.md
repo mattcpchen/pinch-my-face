@@ -13,4 +13,4 @@ Just a fun project to use RxJS and create a simple game to upload your face and 
 </ul>
 
 
-https://codeship.com/projects/7d665780-92a6-0134-a27e-6275a8302a8a/status?branch=master
+![Screenshot_01](https://codeship.com/projects/7d665780-92a6-0134-a27e-6275a8302a8a/status?branch=master)
