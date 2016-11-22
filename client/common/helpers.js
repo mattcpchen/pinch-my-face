@@ -74,16 +74,16 @@ const enableMouseEvents = (elm, status) => {
 // PLAY --- faceBoxes --- init
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 const clearTmpFolder = () => {
-  // var xhttp = new XMLHttpRequest();
-  // xhttp.open("POST", "/upload_api/clear", true);
-  // xhttp.onload = function () {
-  //   if(this.status == 200) {
-  //     console.log(this.responseText);
-  //   } else {
-  //     console.log(this.status, this.statusText);
-  //   }
-  // };
-  // xhttp.send();
+  var xhttp = new XMLHttpRequest();
+  xhttp.open("POST", "/upload_api/clear", true);
+  xhttp.onload = function () {
+    if(this.status == 200) {
+      console.log(this.responseText);
+    } else {
+      console.log(this.status, this.statusText);
+    }
+  };
+  xhttp.send();
 };
 
 const initAllUI = (totalWidth, totalHeight) => {

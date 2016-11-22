@@ -21,7 +21,7 @@ module.exports = function() {
   app.use(methodOverride());
   
   // webpack with HMR
-  if(app.get('env') =='devForClient' || app.get('env') =='development') {
+  if(process.env.NODE_ENV === 'devForClient' || process.env.NODE_ENV ==='development') {
     const webpack = require('webpack');
     const webpackConfig = require('../webpack.config');
     const compiler = webpack(webpackConfig);
@@ -37,7 +37,9 @@ module.exports = function() {
   app.use(require('./routes'));
   
   
-  if (app.get('env') !== 'production') {
+  if (process.env.NODE_ENV === 'devForClient' ||
+      process.env.NODE_ENV === 'devForServer' ||
+      process.env.NODE_ENV === 'development') {
     app.use(errorHandler());
   }
   

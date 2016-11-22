@@ -85,24 +85,23 @@ const createImgData = (canvasW, canvasH, img, imgW, imgH, imgX, imgY) => {
 };
 
 const makeAjaxCallToUplod = (uploadData) => {
-  alert('Upload your own photo is not supported online yet. Please download the repo and run locally to see this feature.')
-  // return new Promise((resolve, reject) => {
-  //   var xhttp = new XMLHttpRequest();
-  //   xhttp.open("POST", "/upload_api/upload", true);
-  //   xhttp.setRequestHeader("Content-type", "application/json");
-  //   xhttp.onload = function () {
-  //     if(this.status == 200) {
-  //       const response = JSON.parse(this.responseText);
-  //       resolve({ status: 'SUCCESS', name: response.imgName });
-  //     } else {
-  //       resolve({ status: 'ERROR', message: this.status +': ' +this.statusText });
-  //     }
-  //   };
-  //   xhttp.onerror = () => {
-  //     resolve({ status: 'ERROR', message: this.status +': ' +this.statusText });
-  //   };
-  //   xhttp.send(JSON.stringify(uploadData));
-  // });
+  return new Promise((resolve, reject) => {
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("POST", "/upload_api/upload", true);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.onload = function () {
+      if(this.status == 200) {
+        const response = JSON.parse(this.responseText);
+        resolve({ status: 'SUCCESS', name: response.imgName });
+      } else {
+        resolve({ status: 'ERROR', message: this.status +': ' +this.statusText });
+      }
+    };
+    xhttp.onerror = () => {
+      resolve({ status: 'ERROR', message: this.status +': ' +this.statusText });
+    };
+    xhttp.send(JSON.stringify(uploadData));
+  });
 };
 
 

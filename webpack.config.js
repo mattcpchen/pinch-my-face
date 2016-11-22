@@ -39,8 +39,7 @@ var config = {
     new ExtractTextPlugin("styles.css"),
     new ProgressBarPlugin({ clear: false })
   ]
-}
-
+};
 
 // If bundling for production, optimize output
 if (process.env.NODE_ENV === 'production') {

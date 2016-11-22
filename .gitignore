@@ -1,5 +1,7 @@
 node_modules/
 tmp/
+dist/
+server-es5/
 .tmp
 npm-debug.log
 .idea/
