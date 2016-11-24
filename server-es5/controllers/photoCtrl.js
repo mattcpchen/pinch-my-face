@@ -23,12 +23,17 @@ function clearTmpFolder(req, res) {
   var tmpFolderPath = 'public/images/tmp/';
   _fs2.default.readdir(tmpFolderPath, function (err, files) {
     if (err) throw err;
-    files.forEach(function (item, index, array) {
-      _fs2.default.unlink(tmpFolderPath + item, function (err) {
-        if (err) throw err;
-        console.log('===> ', item + ' deleted');
+
+    if (files.length === 0) {
+      res.status(200).json({ message: 'tmp folder is empty now.' });
+    } else {
+      files.forEach(function (item, index, array) {
+        _fs2.default.unlink(tmpFolderPath + item, function (err) {
+          if (err) throw err;
+          res.status(200).json({ message: item + ' deleted.' });
+        });
       });
-    });
+    }
   });
 }
 
@@ -41,8 +46,6 @@ function uploadPhoto(req, res) {
   _fs2.default.writeFile(photoImgUrl, imgBase64Data, 'base64', function (err) {
     if (err) throw err;
 
-    res.json(200, {
-      imgName: photoImgName
-    });
+    res.status(200).json({ imgName: photoImgName });
   });
 }

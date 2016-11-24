@@ -17,12 +17,17 @@ function clearTmpFolder(req, res) {
   const tmpFolderPath = 'public/images/tmp/';
   fs.readdir(tmpFolderPath, (err,files) => {
     if (err) throw err;
-    files.forEach((item, index, array) => {
-      fs.unlink(tmpFolderPath + item, function(err){
-        if (err) throw err;
-        console.log('===> ', item + ' deleted');
+    
+    if(files.length === 0) {
+      res.status(200).json({ message: 'tmp folder is empty now.' });
+    } else {
+      files.forEach((item, index, array) => {
+        fs.unlink(tmpFolderPath + item, function(err){
+          if (err) throw err;
+          res.status(200).json({ message: item + ' deleted.' });
+        });
       });
-    });
+    }
   });
 }
 
@@ -35,10 +40,8 @@ function uploadPhoto(req, res) {
   
   fs.writeFile(photoImgUrl, imgBase64Data, 'base64', function(err) {
     if(err) throw err;
-    
-    res.json(200, {
-      imgName: photoImgName
-    });
+  
+    res.status(200).json({ imgName: photoImgName });
   });
 }
 

@@ -101,7 +101,8 @@ const clearLocalTmpFolder = () => {
   xhttp.open("POST", "/upload_api/clear", true);
   xhttp.onload = function () {
     if(this.status == 200) {
-      console.log(this.responseText);
+      const response = JSON.parse(this.responseText);
+      console.log(response.message);
     } else {
       console.log(this.status, this.statusText);
     }
