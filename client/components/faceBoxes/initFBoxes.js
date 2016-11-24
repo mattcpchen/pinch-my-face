@@ -53,7 +53,6 @@ const clickToInitOriSettings = Rx.Observable.combineLatest(
     return Object.assign({}, faceSettings, {
       gridStatus: faceGrid.status,
       photoId: facePhotos.pid,
-      photoBase: facePhotos.photoBase,
       photos: facePhotos.photos,
       animeStyle: animeSettings.style,
       animeAcc: animeSettings.acc,

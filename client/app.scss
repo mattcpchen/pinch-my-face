@@ -6,6 +6,10 @@ $pmfGreen: #47a216;
   -ms-box-shadow: $shadow;
   box-shadow: $shadow;
 }
+@keyframes circleSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
 @import 'styles/title';
 @import 'styles/allPhotos';
 @import 'styles/controllers';
@@ -99,5 +103,4 @@ li {
     &.inner-arrow-right { right: 29px; border-left-width: 27px; }
   }
 }
-
 

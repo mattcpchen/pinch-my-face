@@ -19,17 +19,18 @@ export const INIT_FACE_GRID = { status:false } ;
 
 export const INIT_FACE_PHOTOS = {
   pid:0,
-  photoBase: './images/',
-  photos:[
-    'none',
-    './images/cpc01',
-    './images/cpc02',
-    './images/monalisa01',
-    './images/hillary01',
-    './images/hillary02',
-    './images/trump01'
+  photos : [
+    {body: 'none', face:'none'},
+    {body: './images/cpc01_body.jpg', face:'./images/cpc01_face.jpg'},
+    {body: './images/cpc02_body.jpg', face:'./images/cpc02_face.jpg'},
+    {body: './images/monalisa01_body.jpg', face:'./images/monalisa01_face.jpg'},
+    {body: './images/hillary01_body.jpg', face:'./images/hillary01_face.jpg'},
+    {body: './images/hillary02_body.jpg', face:'./images/hillary02_face.jpg'},
+    {body: './images/trump01_body.jpg', face:'./images/trump01_face.jpg'}
   ]
 };
+
+
 
 export const INIT_ANIME_SETTINGS = {
   style: 'grab', //'grab' or 'squeeze'

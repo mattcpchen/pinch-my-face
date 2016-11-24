@@ -1,5 +1,5 @@
 import uiElements from '../../common/uiElements';
-
+import fbaseHandler from '../../common/firebase';
 
 
 
@@ -67,7 +67,14 @@ const initPhotoOnStage = (imgData) => {
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // UploadSave
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-const createImgData = (canvasW, canvasH, img, imgW, imgH, imgX, imgY) => {
+const createUploadImgData = (canvasW, canvasH, imgData) => {
+  const img = imgData.img;
+  const imgW = imgData.width;
+  const imgH = imgData.height;
+  const imgX = imgData.left;
+  const imgY = imgData.top;
+  const imgOffX = imgData.imgOffX;
+  const imgOffY = imgData.imgOffY;
   var canvas = document.createElement('canvas');
   canvas.width = canvasW;
   canvas.height = canvasH;
@@ -79,37 +86,31 @@ const createImgData = (canvasW, canvasH, img, imgW, imgH, imgX, imgY) => {
   ctx.fillStyle = "#000000";
   ctx.fill();
   //image
-  ctx.drawImage(img, imgX, imgY, imgW, imgH);
+  ctx.drawImage(img, imgX-imgOffX, imgY-imgOffY, imgW, imgH);
   
   return canvas.toDataURL();
 };
 
-const makeAjaxCallToUplod = (uploadData) => {
+const uploadToFirebase = (uploadData) => {
   return new Promise((resolve, reject) => {
-    var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "/upload_api/upload", true);
-    xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.onload = function () {
-      if(this.status == 200) {
-        const response = JSON.parse(this.responseText);
-        resolve({ status: 'SUCCESS', name: response.imgName });
-      } else {
-        resolve({ status: 'ERROR', message: this.status +': ' +this.statusText });
-      }
-    };
-    xhttp.onerror = () => {
-      resolve({ status: 'ERROR', message: this.status +': ' +this.statusText });
-    };
-    xhttp.send(JSON.stringify(uploadData));
+    // TODO: update to firebase
+  
+    _updateImagePhotoToFirebase([{
+        type: 'body',
+        filename: uploadData.filename + '_body',
+        imgBase64Data: uploadData.bgBase64Data
+      }, {
+        type: 'face',
+        filename: uploadData.filename + '_face',
+        imgBase64Data: uploadData.faceBase64Data
+      }], {},
+      function(imgUrls) {
+        resolve({ status: 'SUCCESS', imgUrls: imgUrls });
+      }, function() {
+        //resolve({ status: 'ERROR', message: this.status +': ' +this.statusText });
+      });
   });
 };
-
-
-
-
-
-
-
 
 
 
@@ -121,6 +122,29 @@ export default {
   uploadPhotoToStage,
   initPhotoOnStage,
   
-  createImgData,
-  makeAjaxCallToUplod
+  createUploadImgData,
+  uploadToFirebase
+}
+
+
+
+
+
+function _updateImagePhotoToFirebase(uploadDataArr, imgUrls, callbackOK, callbackError) {
+  if(uploadDataArr.length ===0) {
+    callbackOK(imgUrls);
+    return;
+  }
+  
+  const uploadData = uploadDataArr.shift();
+  const storageRef = fbaseHandler.storageRef;
+  storageRef
+    .child('images/tmp/' + uploadData.filename)
+    .putString(uploadData.imgBase64Data, 'base64')
+    .then(function(snapshot) {
+      const imgType = uploadData.type;
+      const url = snapshot.metadata.downloadURLs[0];
+      imgUrls[imgType] = url;
+      _updateImagePhotoToFirebase(uploadDataArr, imgUrls, callbackOK, callbackError);
+    });
 }

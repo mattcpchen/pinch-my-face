@@ -1,5 +1,6 @@
 import Rx from 'rxjs';
 import uiElements from '../../common/uiElements';
+import helpers from '../../common/helpers';
 import handlers from './_handlers';
 import { uploadAndDragPhoto$ } from './preloadPhoto'
 
@@ -15,28 +16,32 @@ export const clickToUploadANewPhoto$ = clickUploadOKBtn$
     uploadAndDragPhoto$,
     (event, imgData) => {
       const img = uiElements.uploadPhoto;
-      const imgW = imgData.width;
-      const imgH = imgData.height;
-      const imgX = imgData.left;
-      const imgY = imgData.top;
-      const bgDataURI = handlers.createImgData(600, 600, img, imgW, imgH, imgX, imgY);
-      return {
-        imageDataURI : bgDataURI,
-        faceWidth: 300,
-        faceHeight: 300,
-        faceOffLeft: 150,
-        faceOffTop: 100
-      }
+      const bgDataURI = handlers.createUploadImgData(600, 600, Object.assign({}, imgData, {
+        img: img,
+        imgOffX: 0,
+        imgOffY: 0
+      }));
+      const faceDataURI = handlers.createUploadImgData(300, 300, Object.assign({}, imgData, {
+        img: img,
+        imgOffX: 150,
+        imgOffY: 100
+      }));
+  
+      const filename = helpers.generateRanName();
+      const bgBase64Data = bgDataURI.replace(/^data:image\/(png|jpg|jpeg);base64,/, "");
+      const faceBase64Data = faceDataURI.replace(/^data:image\/(png|jpg|jpeg);base64,/, "");
+      
+      return { filename, bgBase64Data, faceBase64Data }
     })
   .flatMap(uploadData => Rx.Observable.fromPromise(
-    handlers.makeAjaxCallToUplod(uploadData)
+    handlers.uploadToFirebase(uploadData)
   ))
   .map(rtn => {
     if(rtn.status === 'ERROR') {
       alert(rtn.message);
       return 'uploadError';
     } else {
-      return rtn.name;
+      return rtn.imgUrls;
     }
   })
   .share();

@@ -96,8 +96,7 @@ const clickToUploadANewPhotoSuccess$ = clickToUploadANewPhoto$
   .share();
 
 const facePhotosAfterUpload$ = clickToUploadANewPhotoSuccess$
-  .withLatestFrom(initFacePhotos$, (newPhotoName, facePhotos) => {
-    const newPhoto = facePhotos.photoBase + 'tmp/' + newPhotoName;
+  .withLatestFrom(initFacePhotos$, (newPhoto, facePhotos) => {
     const newPid = facePhotos.pid + 1;
     const photos = facePhotos.photos;
     facePhotos.pid = newPid;

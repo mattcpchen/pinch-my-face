@@ -14,7 +14,7 @@ const filterForKeyEvents = (clickNum, clickToInitPMFBoxes) => {
   const gridStatus = settings.gridStatus;
   
   const allowKeyEvents = (totalRows===3 && totalCols===3) &&
-    (photo==='none' || gridStatus);
+    (photo.body==='none' || gridStatus);
   
   return allowKeyEvents? clickNum : -1;
 };

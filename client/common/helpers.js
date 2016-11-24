@@ -36,6 +36,21 @@ const capitalizeRandomChar = (string) => {
     })
     .join('');
 };
+
+const generateRanName = () => {
+  const possible1 = '0123456789';
+  const possible2 = 'abcdefghijklmnopqrstuvwxyz';
+  
+  let ranName ='';
+  for(var i=0; i < 3; i+=1) {
+    ranName += possible1.charAt(Math.floor(Math.random() * possible1.length));
+  }
+  for(var i=0; i < 3; i+=1) {
+    ranName += possible2.charAt(Math.floor(Math.random() * possible2.length));
+  }
+  
+  return ranName;
+}
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // ALL Modes
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -74,16 +89,17 @@ const enableMouseEvents = (elm, status) => {
 // PLAY --- faceBoxes --- init
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 const clearTmpFolder = () => {
-  var xhttp = new XMLHttpRequest();
-  xhttp.open("POST", "/upload_api/clear", true);
-  xhttp.onload = function () {
-    if(this.status == 200) {
-      console.log(this.responseText);
-    } else {
-      console.log(this.status, this.statusText);
-    }
-  };
-  xhttp.send();
+  // TODO: update in firebase
+  // var xhttp = new XMLHttpRequest();
+  // xhttp.open("POST", "/upload_api/clear", true);
+  // xhttp.onload = function () {
+  //   if(this.status == 200) {
+  //     console.log(this.responseText);
+  //   } else {
+  //     console.log(this.status, this.statusText);
+  //   }
+  // };
+  // xhttp.send();
 };
 
 const initAllUI = (totalWidth, totalHeight) => {
@@ -103,14 +119,14 @@ const updateFaceBoxes = (settings) => {
   const totalCols = settings.totalCols;
   const gridStatus = settings.gridStatus;
   const photo = settings.photos[settings.photoId];
-  const photoBgUrl = photo==='none'? '' : photo + '_photo.jpg';
-  const photoFaceUrl = photo==='none'? '' : photo + '_face.jpg';
-  const showGrid = photo==='none' || gridStatus;
+  const photoBgUrl = photo.body==='none'? '':photo.body;
+  const photoFaceUrl = photo.face==='none'? '':photo.face;
+  const showGrid = photo.body==='none' || gridStatus;
   
   // updateAllUI
-  uiElements.gridBtn.disabled = (photo==='none')? true : false;
-  uiElements.gridBtn.style.opacity = (photo==='none')? 0.5 : 1;
-  uiElements.gridBtn.style.cursor = (photo==='none')? 'default' : 'pointer';
+  uiElements.gridBtn.disabled = (photo.body==='none')? true : false;
+  uiElements.gridBtn.style.opacity = (photo.body==='none')? 0.5 : 1;
+  uiElements.gridBtn.style.cursor = (photo.body==='none')? 'default' : 'pointer';
   
   // updatePreviewPhoto
   uiElements.photoBG.style.backgroundImage = "url("+photoBgUrl+")";
@@ -166,7 +182,7 @@ const drawEachFaceBox = (index, settings, faceBox) => {
   faceBoxElm.style.width = w +"px";
   faceBoxElm.style.height = h +"px";
   
-  if(photo !== 'none') {
+  if(photo.body !== 'none') {
     // background-size
     faceBoxElm.style.backgroundSize= totalRows*w+'px ' +totalCols*h +'px';
     // background-position: 0, -(curW), -2*(urW)
@@ -191,6 +207,7 @@ export default {
   convertIndexToRowCol,
   eventOutArray,
   capitalizeRandomChar,
+  generateRanName,
   
   switchStageMode,
   enableMouseEvents,

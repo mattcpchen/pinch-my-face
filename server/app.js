@@ -2,7 +2,6 @@ const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
-const errorHandler = require('errorhandler');
 
 module.exports = function() {
   var app = express();
@@ -21,16 +20,19 @@ module.exports = function() {
   app.use(methodOverride());
   
   // webpack with HMR
-  if(process.env.NODE_ENV === 'devForClient' || process.env.NODE_ENV ==='development') {
+  if (process.env.NODE_ENV === 'devForClient' ||
+      process.env.NODE_ENV ==='development') {
     const webpack = require('webpack');
     const webpackConfig = require('../webpack.config');
     const compiler = webpack(webpackConfig);
+    const webpackDevMiddleware = require('webpack-dev-middleware');
+    const webpackHotMiddleware = require('webpack-hot-middleware');
     
-    app.use(require('webpack-dev-middleware')(compiler, {
+    app.use(webpackDevMiddleware(compiler, {
       noInfo: true,
       publicPath: webpackConfig.output.publicPath
     }));
-    app.use(require('webpack-hot-middleware')(compiler));
+    app.use(webpackHotMiddleware(compiler));
   }
   
   // routes
@@ -40,6 +42,8 @@ module.exports = function() {
   if (process.env.NODE_ENV === 'devForClient' ||
       process.env.NODE_ENV === 'devForServer' ||
       process.env.NODE_ENV === 'development') {
+    
+    const errorHandler = require('errorhandler');
     app.use(errorHandler());
   }
   
