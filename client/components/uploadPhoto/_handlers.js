@@ -1,4 +1,5 @@
 import uiElements from '../../common/uiElements';
+import helpers from '../../common/helpers';
 import fbaseHandler from '../../common/firebase';
 
 
@@ -93,8 +94,6 @@ const createUploadImgData = (canvasW, canvasH, imgData) => {
 
 const uploadToFirebase = (uploadData) => {
   return new Promise((resolve, reject) => {
-    // TODO: update to firebase
-  
     _updateImagePhotoToFirebase([{
         type: 'body',
         filename: uploadData.filename + '_body',

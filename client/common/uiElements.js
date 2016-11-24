@@ -1,5 +1,6 @@
 export default {
   pinchMyFace : document.querySelector('#pinchMyFace'),
+  pmfLoader : document.querySelector('#pmfLoader'),
   
   allPhotos : document.querySelector('#allPhotos'),
   uploadPhotoHolder : document.querySelector('#uploadPhotoHolder'),

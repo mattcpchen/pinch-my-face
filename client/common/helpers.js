@@ -50,7 +50,15 @@ const generateRanName = () => {
   }
   
   return ranName;
-}
+};
+
+const displayPmfLoader = (state) => {
+  if(state) {
+    uiElements.pmfLoader.classList.add("pmfLoader-on");
+  } else {
+    uiElements.pmfLoader.classList.remove("pmfLoader-on");
+  }
+};
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // ALL Modes
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -208,6 +216,7 @@ export default {
   eventOutArray,
   capitalizeRandomChar,
   generateRanName,
+  displayPmfLoader,
   
   switchStageMode,
   enableMouseEvents,

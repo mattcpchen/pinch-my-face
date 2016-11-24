@@ -104,3 +104,32 @@ li {
   }
 }
 
+
+#pmfLoader {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.5);;
+  z-index: 200;
+  display: none;
+
+  .circleLoader {
+    position:relative;
+    margin: 0 auto;
+    border: 16px solid #ccc;
+    border-top: 16px solid $pmfBlue;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    top: 200px;
+  }
+
+  &.pmfLoader-on {
+    display: block;
+    .circleLoader {
+      animation: circleSpin 2s linear infinite;
+    }
+  }
+}
+

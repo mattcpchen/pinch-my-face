@@ -15,6 +15,8 @@ export const clickToUploadANewPhoto$ = clickUploadOKBtn$
   .withLatestFrom(
     uploadAndDragPhoto$,
     (event, imgData) => {
+      helpers.displayPmfLoader(true);
+      
       const img = uiElements.uploadPhoto;
       const bgDataURI = handlers.createUploadImgData(600, 600, Object.assign({}, imgData, {
         img: img,
@@ -39,8 +41,10 @@ export const clickToUploadANewPhoto$ = clickUploadOKBtn$
   .map(rtn => {
     if(rtn.status === 'ERROR') {
       alert(rtn.message);
+      helpers.displayPmfLoader(false);
       return 'uploadError';
     } else {
+      helpers.displayPmfLoader(false);
       return rtn.imgUrls;
     }
   })
