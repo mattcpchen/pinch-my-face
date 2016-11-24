@@ -93,6 +93,7 @@ const createUploadImgData = (canvasW, canvasH, imgData) => {
 };
 
 const uploadToServer = (uploadDataArr) => {
+  // NOTE: use _updateImagePhotoToFirebase() if you need to store photos permanently
   return new Promise((resolve, reject) => {
     _updateImagePhotoToLocal(uploadDataArr, {},
       (imgUrls) => {
