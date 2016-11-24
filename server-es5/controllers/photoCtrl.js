@@ -33,57 +33,16 @@ function clearTmpFolder(req, res) {
 }
 
 function uploadPhoto(req, res) {
-  var imgUrlPath = 'public/images/tmp/';
-  var randomName = _generateRanName();
-  var photoImgUrl = imgUrlPath + randomName + '_photo.jpg';
-  var dataURI = req.body.imageDataURI;
+  var imgBase64Data = req.body.imgBase64Data;
+  var filename = req.body.filename;
+  var photoImgName = filename + '.jpg';
+  var photoImgUrl = 'public/images/tmp/' + photoImgName;
 
-  var base64Data = dataURI.replace(/^data:image\/(png|jpg|jpeg);base64,/, "");
-
-  _fs2.default.writeFile(photoImgUrl, base64Data, 'base64', function (err) {
+  _fs2.default.writeFile(photoImgUrl, imgBase64Data, 'base64', function (err) {
     if (err) throw err;
 
-    _readOriginalImage(req, res, photoImgUrl);
-  });
-}
-
-function _readOriginalImage(req, res, photoImgUrl) {
-  _jimp2.default.read(photoImgUrl, function (err, lenna) {
-    if (err) throw err;
-
-    // imgUrl and faceUrl
-    var imgUrlPath = photoImgUrl.substr(0, photoImgUrl.lastIndexOf('/') + 1);
-    var randomName = photoImgUrl.split('/').pop().split('_photo')[0];
-    var faceImgUrl = imgUrlPath + randomName + '_face.jpg';
-
-    // faceImgData
-    var faceImgW = Number(req.body.faceWidth);
-    var faceImgH = Number(req.body.faceHeight);
-    var faceImgX = Number(req.body.faceOffLeft);
-    var faceImgY = Number(req.body.faceOffTop);
-
-    // faceImage
-    lenna.clone().crop(faceImgX, faceImgY, faceImgW, faceImgH).write(faceImgUrl, function (err) {
-      if (err) throw err;
-
-      res.json(200, {
-        imgName: randomName
-      });
+    res.json(200, {
+      imgName: photoImgName
     });
   });
-}
-
-function _generateRanName() {
-  var possible1 = '0123456789';
-  var possible2 = 'abcdefghijklmnopqrstuvwxyz';
-
-  var ranName = '';
-  for (var i = 0; i < 3; i += 1) {
-    ranName += possible1.charAt(Math.floor(Math.random() * possible1.length));
-  }
-  for (var i = 0; i < 3; i += 1) {
-    ranName += possible2.charAt(Math.floor(Math.random() * possible2.length));
-  }
-
-  return ranName;
 }

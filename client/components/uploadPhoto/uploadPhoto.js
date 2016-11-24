@@ -35,8 +35,19 @@ export const clickToUploadANewPhoto$ = clickUploadOKBtn$
       
       return { filename, bgBase64Data, faceBase64Data }
     })
-  .flatMap(uploadData => Rx.Observable.fromPromise(
-    handlers.uploadToFirebase(uploadData)
+  .map(uploadData => {
+    return [{
+      type: 'body',
+      filename: uploadData.filename + '_body',
+      imgBase64Data: uploadData.bgBase64Data
+    }, {
+      type: 'face',
+      filename: uploadData.filename + '_face',
+      imgBase64Data: uploadData.faceBase64Data
+    }];
+  })
+  .flatMap(uploadDataArr => Rx.Observable.fromPromise(
+    handlers.uploadToServer(uploadDataArr)
   ))
   .map(rtn => {
     if(rtn.status === 'ERROR') {

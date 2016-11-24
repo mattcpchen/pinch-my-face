@@ -92,21 +92,13 @@ const createUploadImgData = (canvasW, canvasH, imgData) => {
   return canvas.toDataURL();
 };
 
-const uploadToFirebase = (uploadData) => {
+const uploadToServer = (uploadDataArr) => {
   return new Promise((resolve, reject) => {
-    _updateImagePhotoToFirebase([{
-        type: 'body',
-        filename: uploadData.filename + '_body',
-        imgBase64Data: uploadData.bgBase64Data
-      }, {
-        type: 'face',
-        filename: uploadData.filename + '_face',
-        imgBase64Data: uploadData.faceBase64Data
-      }], {},
-      function(imgUrls) {
+    _updateImagePhotoToLocal(uploadDataArr, {},
+      (imgUrls) => {
         resolve({ status: 'SUCCESS', imgUrls: imgUrls });
-      }, function() {
-        //resolve({ status: 'ERROR', message: this.status +': ' +this.statusText });
+      }, (errMessage) => {
+        resolve({ status: 'ERROR', message: errMessage });
       });
   });
 };
@@ -122,11 +114,39 @@ export default {
   initPhotoOnStage,
   
   createUploadImgData,
-  uploadToFirebase
+  uploadToServer
 }
 
 
 
+
+
+
+function _updateImagePhotoToLocal(uploadDataArr, imgUrls, callbackOK, callbackError) {
+  if(uploadDataArr.length ===0) {
+    callbackOK(imgUrls);
+    return;
+  }
+  
+  const uploadData = uploadDataArr.shift();
+  var xhttp = new XMLHttpRequest();
+  xhttp.open("POST", "/upload_api/upload", true);
+  xhttp.setRequestHeader("Content-type", "application/json");
+  xhttp.onload = function () {
+    if(this.status == 200) {
+      const imgType = uploadData.type;
+      const response = JSON.parse(this.responseText);
+      const url = './images/tmp/' + response.imgName;
+      
+      imgUrls[imgType] = url;
+      _updateImagePhotoToLocal(uploadDataArr, imgUrls, callbackOK, callbackError);
+    } else {
+      const errMessage = this.status +': ' +this.statusText;
+      callbackError(errMessage);
+    }
+  };
+  xhttp.send(JSON.stringify(uploadData));
+}
 
 
 function _updateImagePhotoToFirebase(uploadDataArr, imgUrls, callbackOK, callbackError) {
