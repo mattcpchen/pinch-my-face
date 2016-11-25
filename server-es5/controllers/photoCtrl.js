@@ -24,15 +24,19 @@ function clearTmpFolder(req, res) {
   _fs2.default.readdir(tmpFolderPath, function (err, files) {
     if (err) throw err;
 
+    files = files.filter(function (item) {
+      return item !== 'empty.jpg';
+    });
     if (files.length === 0) {
-      res.status(200).json({ message: 'tmp folder is empty now.' });
+      res.status(200).json({ message: 'tmp folder is empty.' });
     } else {
       files.forEach(function (item, index, array) {
         _fs2.default.unlink(tmpFolderPath + item, function (err) {
           if (err) throw err;
-          res.status(200).json({ message: item + ' deleted.' });
+          console.log('===> ', item + ' is deleted.');
         });
       });
+      res.status(200).json({ message: files });
     }
   });
 }

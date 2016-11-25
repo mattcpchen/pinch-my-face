@@ -18,11 +18,11 @@ function clearTmpFolder(req, res) {
   fs.readdir(tmpFolderPath, (err,files) => {
     if (err) throw err;
     
-    if(files.length === 1) {
+    files = files.filter(item => item !== 'empty.jpg');
+    if(files.length === 0) {
       res.status(200).json({message: 'tmp folder is empty.'});
     } else {
       files.forEach((item, index, array) => {
-        if(item === 'empty.jpg') return;
         fs.unlink(tmpFolderPath + item, function(err){
           if (err) throw err;
           console.log('===> ', item +' is deleted.')
