@@ -18,15 +18,17 @@ function clearTmpFolder(req, res) {
   fs.readdir(tmpFolderPath, (err,files) => {
     if (err) throw err;
     
+    files = files.filter(item => item !== 'empty.jpg');
     if(files.length === 0) {
-      res.status(200).json({ message: 'tmp folder is empty now.' });
+      res.status(200).json({message: 'tmp folder is empty.'});
     } else {
       files.forEach((item, index, array) => {
         fs.unlink(tmpFolderPath + item, function(err){
           if (err) throw err;
-          res.status(200).json({ message: item + ' deleted.' });
+          console.log('===> ', item +' is deleted.')
         });
       });
+      res.status(200).json({message: files});
     }
   });
 }
