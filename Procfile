@@ -1,1 +1,1 @@
-web: node server-es5/index.js
+web: NODE_ENV=production node server-es5/index.js

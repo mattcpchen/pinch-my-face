@@ -1,10 +1,11 @@
-const path = require('path');
-const express = require('express');
-const bodyParser = require('body-parser');
-const methodOverride = require('method-override');
+import path from 'path';
+import express from 'express';
+import bodyParser from 'body-parser';
+import methodOverride from 'method-override';
+
 
 module.exports = function() {
-  var app = express();
+  const app = express();
 
   app.set('port', process.env.PORT || 8080);
   app.set('root', path.join(__dirname + '../'));
@@ -39,10 +40,7 @@ module.exports = function() {
   app.use(require('./routes'));
   
   
-  if (process.env.NODE_ENV === 'devForClient' ||
-      process.env.NODE_ENV === 'devForServer' ||
-      process.env.NODE_ENV === 'development') {
-    
+  if (process.env.NODE_ENV !== 'production') {
     const errorHandler = require('errorhandler');
     app.use(errorHandler());
   }

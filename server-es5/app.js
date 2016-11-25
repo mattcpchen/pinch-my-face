@@ -1,25 +1,38 @@
 'use strict';
 
-var path = require('path');
-var express = require('express');
-var bodyParser = require('body-parser');
-var methodOverride = require('method-override');
+var _path = require('path');
+
+var _path2 = _interopRequireDefault(_path);
+
+var _express = require('express');
+
+var _express2 = _interopRequireDefault(_express);
+
+var _bodyParser = require('body-parser');
+
+var _bodyParser2 = _interopRequireDefault(_bodyParser);
+
+var _methodOverride = require('method-override');
+
+var _methodOverride2 = _interopRequireDefault(_methodOverride);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 module.exports = function () {
-  var app = express();
+  var app = (0, _express2.default)();
 
   app.set('port', process.env.PORT || 8080);
-  app.set('root', path.join(__dirname + '../'));
-  app.set('public', path.join(__dirname + '../public'));
+  app.set('root', _path2.default.join(__dirname + '../'));
+  app.set('public', _path2.default.join(__dirname + '../public'));
 
   // upload
-  app.use(bodyParser.json({ limit: '100mb' }));
-  app.use(bodyParser.urlencoded({
+  app.use(_bodyParser2.default.json({ limit: '100mb' }));
+  app.use(_bodyParser2.default.urlencoded({
     extended: true,
     limit: '100mb'
   }));
 
-  app.use(methodOverride());
+  app.use((0, _methodOverride2.default)());
 
   // webpack with HMR
   if (process.env.NODE_ENV === 'devForClient' || process.env.NODE_ENV === 'development') {
@@ -39,8 +52,7 @@ module.exports = function () {
   // routes
   app.use(require('./routes'));
 
-  if (process.env.NODE_ENV === 'devForClient' || process.env.NODE_ENV === 'devForServer' || process.env.NODE_ENV === 'development') {
-
+  if (process.env.NODE_ENV !== 'production') {
     var errorHandler = require('errorhandler');
     app.use(errorHandler());
   }

@@ -1,9 +1,7 @@
 import express from 'express';
-import path from 'path';
-var router = express.Router();
 import indexCtrl from './controllers/indexCtrl';
 import photoCtrl from './controllers/photoCtrl';
-
+const router = express.Router();
 
 
 // static

@@ -4,10 +4,6 @@ var _express = require('express');
 
 var _express2 = _interopRequireDefault(_express);
 
-var _path = require('path');
-
-var _path2 = _interopRequireDefault(_path);
-
 var _indexCtrl = require('./controllers/indexCtrl');
 
 var _indexCtrl2 = _interopRequireDefault(_indexCtrl);
@@ -19,7 +15,6 @@ var _photoCtrl2 = _interopRequireDefault(_photoCtrl);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var router = _express2.default.Router();
-
 
 // static
 router.use(_express2.default.static(__dirname + '/../public'));

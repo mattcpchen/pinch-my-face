@@ -1,6 +1,4 @@
-import path from 'path';
 import fs from 'fs';
-import jimp from 'jimp';
 
 
 
