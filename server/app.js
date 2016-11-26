@@ -24,7 +24,7 @@ module.exports = function() {
   if (process.env.NODE_ENV === 'devForClient' ||
       process.env.NODE_ENV ==='development') {
     const webpack = require('webpack');
-    const webpackConfig = require('../webpack.config');
+    const webpackConfig = require('../webpack.config.babel');
     const compiler = webpack(webpackConfig);
     const webpackDevMiddleware = require('webpack-dev-middleware');
     const webpackHotMiddleware = require('webpack-hot-middleware');
