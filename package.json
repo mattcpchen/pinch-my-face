@@ -17,16 +17,15 @@
     "start:client": "NODE_ENV=devForClient node server",
     "start:server": "NODE_ENV=devForServer nodemon server",
     "start": "NODE_ENV=development nodemon server",
-    "build:dist": "npm run build-client && npm run build-server",
-    "build": "npm run build:dist && NODE_ENV=production node server-es5",
+    "build": "NODE_ENV=production npm run webpack:build",
+    "run": "NODE_ENV=production node dist/server",
+    "build:run": "npm run build && npm run start",
     "prestart:client": "npm run clean-dist",
-    "prestart:server": "npm run build-client",
+    "prestart:server": "npm run clean-dist && NODE_ENV=devForServer npm run webpack:build",
     "prestart": "npm run clean-dist",
-    "webpack": "webpack-dev-server --progress",
-    "webpack:build": "npm run build-client",
     "clean-dist": "rimraf dist",
-    "build-client": "webpack -p --progress --colors",
-    "build-server": "babel server --out-dir server-es5"
+    "webpack": "webpack-dev-server --progress",
+    "webpack:build": "webpack -p --progress --colors"
   },
   "dependencies": {
     "body-parser": "^1.15.2",

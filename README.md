@@ -11,8 +11,8 @@ https://pinch-my-face.herokuapp.com/
     <li><b>npm run start:client</b>: development for client only</li>
     <li><b>npm run start:server</b>: development for server only</li>
     <li><b>npm run start</b>: development for both client && server</li>
-    <li><b>npm run build:dist</b>: build the dist folder for production</li>
-    <li><b>npm run build</b>: build and run</li>
+    <li><b>npm run build</b>: build the dist folder for production</li>
+    <li><b>npm run build:run</b>: build and run</li>
 </ul>
 
 
