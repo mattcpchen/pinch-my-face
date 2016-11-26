@@ -20,7 +20,7 @@ var config = {
       query: {
         presets: ['es2015','stage-2']
       }
-    }, {
+    },{
       test: /\.scss$/,
       loader: ExtractTextPlugin.extract('style', 'css?sourceMap!sass?sourceMap'),
       include: __dirname + "/client"
@@ -41,16 +41,54 @@ var config = {
   ]
 };
 
-// If bundling for production, optimize output
+const config_server = {
+  entry:  __dirname + "/server/index.js",
+  target: 'node',
+  node: {
+    __filename: true,
+    __dirname: true
+  },
+  output: {
+    path: __dirname + "/dist",
+    filename: "server.js",
+    publicPath: '/'
+  },
+  module: {
+    loaders: [{
+      test: /\.jsx?$/,
+      exclude: /node_modules/,
+      loader: 'babel',
+      query: {
+        presets: ['es2015','stage-2']
+      }
+    }, {
+      test: /\.json$/,
+      loader: 'json'
+    }]
+  },
+  plugins: [
+    new ProgressBarPlugin({ clear: false })
+  ]
+};
+
+
+
+let config = config_client;
 if (process.env.NODE_ENV === 'production') {
-  config.devtool = false;
-  config.plugins = config.plugins.concat([
+  const sharedPlugins = [
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({comments: false}),
     new webpack.DefinePlugin({
       'process.env': {NODE_ENV: JSON.stringify('production')}
     })
-  ]);
+  ];
+  
+  config_client.devtool = false;
+  config_client.plugins = config_client.plugins.concat(sharedPlugins);
+  config_server.plugins = config_server.plugins.concat(sharedPlugins);
+  
+  config = [config_client, config_server];
 };
+
 
 module.exports = config;
