@@ -31,6 +31,7 @@
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
     "firebase": "^3.6.1",
+    "json-loader": "^0.5.4",
     "method-override": "^2.3.6",
     "rxjs": "^5.0.0-rc.1"
   },
@@ -45,7 +46,6 @@
     "errorhandler": "^1.4.3",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.9.0",
-    "json-loader": "^0.5.4",
     "node-sass": "^3.10.1",
     "nodemon": "^1.11.0",
     "progress-bar-webpack-plugin": "^1.9.0",
