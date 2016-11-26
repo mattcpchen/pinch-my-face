@@ -3,13 +3,11 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import methodOverride from 'method-override';
 
-
 module.exports = function() {
   const app = express();
-
   app.set('port', process.env.PORT || 8080);
-  app.set('root', path.join(__dirname + '../'));
-  app.set('public', path.join(__dirname + '../public'));
+  app.set('root', path.join(__dirname, '../'));
+  app.set('public', path.join(__dirname, '../public/'));
   
   // upload
   app.use(bodyParser.json({ limit:'100mb' }));

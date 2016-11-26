@@ -1,15 +1,16 @@
 import express from 'express';
+import path from 'path';
 import indexCtrl from './controllers/indexCtrl';
 import photoCtrl from './controllers/photoCtrl';
 const router = express.Router();
 
 
 // static
-router.use(express.static(__dirname + '/../public'));
-router.use(express.static(__dirname + '/../dist'));
+router.use(express.static( path.join(__dirname, '../public/') ));
+router.use(express.static( path.join(__dirname, '../dist/') ));
 
 // index
-// router.get('*', _index);
+// router.get('*', indexCtrl.index);
 router.get('/', indexCtrl.index);
 
 
