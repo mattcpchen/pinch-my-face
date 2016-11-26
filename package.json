@@ -18,7 +18,7 @@
     "start:server": "NODE_ENV=devForServer nodemon server",
     "start": "NODE_ENV=development nodemon server",
     "build": "NODE_ENV=production npm run webpack:build",
-    "run": "NODE_ENV=production node dist/server",
+    "run": "NODE_ENV=production node dist/server.js",
     "build:run": "npm run build && npm run start",
     "prestart:client": "npm run clean-dist",
     "prestart:server": "npm run clean-dist && NODE_ENV=devForServer npm run webpack:build",
