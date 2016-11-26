@@ -1,10 +1,10 @@
-const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const ProgressBarPlugin = require('progress-bar-webpack-plugin');
+import webpack from 'webpack';
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import ProgressBarPlugin from 'progress-bar-webpack-plugin';
 
 
 
-var config = {
+const config_client = {
   devtool: 'eval-source-map',
   entry:  __dirname + "/client/app.js",
   output: {
