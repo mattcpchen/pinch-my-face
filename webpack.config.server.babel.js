@@ -1,4 +1,15 @@
+import webpack from 'webpack';
 import ProgressBarPlugin from 'progress-bar-webpack-plugin';
+
+
+const sharedProdPlugins = [
+  new webpack.optimize.OccurenceOrderPlugin(),
+  new webpack.optimize.UglifyJsPlugin({comments: false}),
+  new webpack.DefinePlugin({
+    'process.env.NODE_ENV': JSON.stringify('production')
+  }),
+  new webpack.EnvironmentPlugin(['PORT'])
+];
 
 
 
@@ -34,14 +45,8 @@ const config_server = {
 
 
 
-const generateConfig = (sharedProdPlugins) => {
-  if (process.env.NODE_ENV === 'production') {
-    config_server.plugins = config_server.plugins.concat(sharedProdPlugins);
-  }
-  
-  return config_server;
-};
+config_server.plugins = config_server.plugins.concat(sharedProdPlugins);
 
 
 
-module.exports = generateConfig;
+module.exports = config_server;
