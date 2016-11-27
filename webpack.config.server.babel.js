@@ -40,7 +40,7 @@ const config_server = {
 };
 
 
-
+// webpack_for_server only executed for production
 config_server.plugins = config_server.plugins.concat(sharedProdPlugins);
 
 
