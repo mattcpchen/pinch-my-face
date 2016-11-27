@@ -14,18 +14,19 @@
     "url": "https://github.com/mattcpchen/pinch-my-face.git"
   },
   "scripts": {
-    "start:client": "NODE_ENV=devForClient node server",
-    "start:server": "NODE_ENV=devForServer nodemon server",
-    "start": "NODE_ENV=development nodemon server",
+    "dev:client": "NODE_ENV=devForClient node server",
+    "dev:server": "NODE_ENV=devForServer nodemon server",
+    "dev": "NODE_ENV=development nodemon server",
     "build": "NODE_ENV=production npm run webpack:build",
-    "run": "NODE_ENV=production node dist/server.js",
-    "build:run": "npm run build && npm run start",
-    "prestart:client": "npm run clean-dist",
-    "prestart:server": "npm run clean-dist && NODE_ENV=devForServer npm run webpack:build",
-    "prestart": "npm run clean-dist",
+    "start": "NODE_ENV=production node dist/server.js",
+    "build:start": "npm run build && npm run start",
+
+    "predev:client": "npm run clean-dist",
+    "predev:server": "npm run clean-dist && NODE_ENV=devForServer npm run webpack:build",
+    "predev": "npm run clean-dist",
     "clean-dist": "rimraf dist",
-    "webpack": "webpack-dev-server --progress",
-    "webpack:build": "webpack -p --progress --colors"
+    "webpack:dev": "webpack-dev-server --progress",
+    "webpack:build": "webpack -p --progress --colors",
   },
   "dependencies": {
     "body-parser": "^1.15.2",
