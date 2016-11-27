@@ -102,7 +102,7 @@ const clearLocalTmpFolder = () => {
   xhttp.onload = function () {
     if(this.status == 200) {
       const response = JSON.parse(this.responseText);
-      console.log(response.message);
+      //console.log(response.message);
     } else {
       console.log(this.status, this.statusText);
     }

@@ -4,7 +4,10 @@ import webpack from 'webpack';
 const sharedProdPlugins = [
   new webpack.optimize.OccurenceOrderPlugin(),
   new webpack.optimize.UglifyJsPlugin({comments: false}),
-  new webpack.EnvironmentPlugin(['NODE_ENV', 'PORT'])
+  new webpack.DefinePlugin({
+    'process.env.NODE_ENV': JSON.stringify('production')
+  }),
+  new webpack.EnvironmentPlugin(['PORT'])
 ];
 
 
@@ -30,7 +33,7 @@ if(process.env.NODE_ENV === 'production') {
 
 
 // heroku
-if(process.env.NODE_ENV === 'proForHeroku') {
+if(process.env.NODE_ENV === 'prodForHeroku') {
   const config_heroku = require('./webpack.config.heroku.babel.js')(sharedProdPlugins);
   config = config_heroku;
 }

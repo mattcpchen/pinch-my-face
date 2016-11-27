@@ -18,15 +18,16 @@
     "dev:server": "NODE_ENV=devForServer nodemon server",
     "dev": "NODE_ENV=development nodemon server",
     "build": "NODE_ENV=production npm run webpack:build",
-    "start": "NODE_ENV=production node dist/server.js",
+    "start": "node dist/server.js",
     "build:start": "npm run build && npm run start",
+    "postinstall": "NODE_ENV=prodForHeroku npm run webpack:build",
 
     "predev:client": "npm run clean-dist",
     "predev:server": "npm run clean-dist && NODE_ENV=devForServer npm run webpack:build",
     "predev": "npm run clean-dist",
     "clean-dist": "rimraf dist",
     "webpack:dev": "webpack-dev-server --progress",
-    "webpack:build": "webpack -p --progress --colors",
+    "webpack:build": "webpack -p --progress --colors"
   },
   "dependencies": {
     "body-parser": "^1.15.2",
