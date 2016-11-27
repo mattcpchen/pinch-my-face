@@ -17,10 +17,10 @@
     "dev:client": "NODE_ENV=devForClient node server",
     "dev:server": "NODE_ENV=devForServer nodemon server",
     "dev": "NODE_ENV=development nodemon server",
-    "build": "NODE_ENV=production npm run webpack:build",
+    "build": "cross-env NODE_ENV=production npm run webpack:build",
     "start": "node dist/server.js",
     "build:start": "npm run build && npm run start",
-    "postinstall": "NODE_ENV=prodForHeroku npm run webpack:build",
+    "postinstall": "cross-env NODE_ENV=prodForHeroku npm run webpack:build",
 
     "predev:client": "npm run clean-dist",
     "predev:server": "npm run clean-dist && NODE_ENV=devForServer npm run webpack:build",
@@ -31,6 +31,7 @@
   },
   "dependencies": {
     "body-parser": "^1.15.2",
+    "cross-env": "^3.1.3",
     "express": "^4.14.0",
     "firebase": "^3.6.1",
     "json-loader": "^0.5.4",
