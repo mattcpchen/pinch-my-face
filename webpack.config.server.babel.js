@@ -5,10 +5,10 @@ import ProgressBarPlugin from 'progress-bar-webpack-plugin';
 const sharedProdPlugins = [
   new webpack.optimize.OccurenceOrderPlugin(),
   new webpack.optimize.UglifyJsPlugin({comments: false}),
-  new webpack.DefinePlugin({
-    'process.env.NODE_ENV': JSON.stringify('production')
-  }),
-  new webpack.EnvironmentPlugin(['PORT'])
+  // new webpack.DefinePlugin({
+  //   'process.env.NODE_ENV': JSON.stringify('production')
+  // }),
+  // new webpack.EnvironmentPlugin(['PORT'])
 ];
 
 
