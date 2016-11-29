@@ -1,6 +1,4 @@
 import uiElements from '../../common/uiElements';
-import helpers from '../../common/helpers';
-import fbaseHandler from '../../common/firebase';
 
 
 
@@ -93,7 +91,6 @@ const createUploadImgData = (canvasW, canvasH, imgData) => {
 };
 
 const uploadToServer = (uploadDataArr) => {
-  // NOTE: use _updateImagePhotoToFirebase() if you need to store photos permanently
   return new Promise((resolve, reject) => {
     _updateImagePhotoToLocal(uploadDataArr, {},
       (imgUrls) => {
@@ -147,24 +144,4 @@ function _updateImagePhotoToLocal(uploadDataArr, imgUrls, callbackOK, callbackEr
     }
   };
   xhttp.send(JSON.stringify(uploadData));
-}
-
-
-function _updateImagePhotoToFirebase(uploadDataArr, imgUrls, callbackOK, callbackError) {
-  if(uploadDataArr.length ===0) {
-    callbackOK(imgUrls);
-    return;
-  }
-  
-  const uploadData = uploadDataArr.shift();
-  const storageRef = fbaseHandler.storageRef;
-  storageRef
-    .child('images/tmp/' + uploadData.filename)
-    .putString(uploadData.imgBase64Data, 'base64')
-    .then(function(snapshot) {
-      const imgType = uploadData.type;
-      const url = snapshot.metadata.downloadURLs[0];
-      imgUrls[imgType] = url;
-      _updateImagePhotoToFirebase(uploadDataArr, imgUrls, callbackOK, callbackError);
-    });
 }
