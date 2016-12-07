@@ -17,7 +17,7 @@
     "dev:client": "NODE_ENV=devForClient node server",
     "dev:server": "NODE_ENV=devForServer nodemon server",
     "dev": "NODE_ENV=development nodemon server",
-    "build": "NODE_ENV=production npm run build-server && npm run build-client",
+    "build": "NODE_ENV=production npm run build-server && NODE_ENV=production npm run build-client",
     "start": "NODE_ENV=production node dist/server.js",
     "build:start": "npm run build && npm run start",
     "postinstall": "npm run build",
