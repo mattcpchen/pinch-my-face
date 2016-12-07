@@ -26,8 +26,8 @@
     "predev": "npm run clean-dist",
     "prebuild": "npm run clean-dist",
     "clean-dist": "rimraf dist",
-    "build-client": "webpack --config ./webpack.config.client.babel.js --colors",
-    "build-server": "webpack --config ./webpack.config.server.babel.js --colors"
+    "build-client": "webpack --config ./webpack.client.config.babel.js --colors",
+    "build-server": "webpack --config ./webpack.server.config.babel.js --colors"
   },
   "dependencies": {
     "body-parser": "^1.15.2",
