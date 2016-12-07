@@ -1,6 +1,5 @@
 import webpack from 'webpack';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
-import ProgressBarPlugin from 'progress-bar-webpack-plugin';
 
 
 
@@ -11,7 +10,7 @@ const sharedProdPlugins = [
 
 
 
-const config_client = {
+const config = {
   devtool: 'eval-source-map',
   entry:  __dirname + "/client/app.js",
   output: {
@@ -43,8 +42,7 @@ const config_client = {
     inline: true
   },
   plugins: [
-    new ExtractTextPlugin("styles.css"),
-    new ProgressBarPlugin({ clear: false })
+    new ExtractTextPlugin("styles.css")
   ]
 };
 
@@ -52,11 +50,16 @@ const config_client = {
 
 
 if (process.env.NODE_ENV === 'production') {
-  config_client.devtool = false;
-  config_client.plugins = config_client.plugins.concat(sharedProdPlugins);
-};
+  config.devtool = false;
+  config.plugins = config.plugins.concat(sharedProdPlugins);
+} else {
+  const ProgressBarPlugin = require('progress-bar-webpack-plugin');
+  config.plugins = config.plugins.concat([
+    new ProgressBarPlugin({ clear: false })
+  ]);
+}
   
 
 
 
-module.exports = config_client;
+module.exports = config;

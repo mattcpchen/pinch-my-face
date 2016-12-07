@@ -1,5 +1,4 @@
 import webpack from 'webpack';
-import ProgressBarPlugin from 'progress-bar-webpack-plugin';
 
 
 const sharedProdPlugins = [
@@ -9,7 +8,7 @@ const sharedProdPlugins = [
 
 
 
-const config_server = {
+const config = {
   entry:  __dirname + "/server/index.js",
   target: 'node',
   node: {
@@ -34,15 +33,13 @@ const config_server = {
       loader: 'json'
     }]
   },
-  plugins: [
-    new ProgressBarPlugin({ clear: false })
-  ]
+  plugins: []
 };
 
 
 // webpack_for_server only executed for production
-config_server.plugins = config_server.plugins.concat(sharedProdPlugins);
+config.plugins = config.plugins.concat(sharedProdPlugins);
 
 
 
-module.exports = config_server;
+module.exports = config;
