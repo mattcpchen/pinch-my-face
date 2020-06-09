@@ -3,7 +3,7 @@ Just a fun project to use RxJS and create a simple game to upload your face and 
 
 
 ### Demo:
-Heroku demo can be seen here: https://pinch-my-face.herokuapp.com/
+Wanna checkout the demo? Click [here](https://pinch-my-face.herokuapp.com/) to checkout the Heroku demo link.
 
 
 ### Sneak peek:
