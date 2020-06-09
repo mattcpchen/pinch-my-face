@@ -11,7 +11,7 @@ Wanna checkout the demo? Click [here](https://pinch-my-face.herokuapp.com/) to c
 ![Screenshot_02](/public/assets/readme_02.jpg?raw=true)
 
 
-### Getting Started
+### Getting Started:
 <ul>
     <li><b>npm run dev:client</b>: development for client-side code only</li>
     <li><b>npm run dev:server</b>: development for server-side code only</li>
