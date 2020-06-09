@@ -1,12 +1,17 @@
 ## Pinch-My-Face
 Just a fun project to use RxJS and create a simple game to upload your face and play with it.
 
+
+### Demo:
+Heroku demo can be seen here: https://pinch-my-face.herokuapp.com/
+
+
+### Sneak peek:
 ![Screenshot_01](/public/assets/readme_01.jpg?raw=true)
 ![Screenshot_02](/public/assets/readme_02.jpg?raw=true)
 
-https://pinch-my-face.herokuapp.com/
 
-## Getting Started
+### Getting Started
 <ul>
     <li><b>npm run dev:client</b>: development for client-side code only</li>
     <li><b>npm run dev:server</b>: development for server-side code only</li>
