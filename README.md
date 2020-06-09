@@ -1,10 +1,9 @@
 ## Pinch-My-Face
-Just a fun project to use RxJS and create a simple game. Upload your face photo and start `pinching` it.
+Just a fun project to use RxJS and create a simple face garb/sqeeze game. Upload your face photo and start `pinching` it. Your phtoto is not gonna stored in our database, so please feel comfortable to upload and have some fun.
 
 
 ### Demo:
-Wanna checkout the demo? Click [here](https://pinch-my-face.herokuapp.com/) to check out the Heroku demo link.
-
+Have a photo of yours ready for some fun? You can check out the demo [here](https://pinch-my-face.herokuapp.com/).
 
 ### Sneak peek:
 ![Screenshot_01](/public/assets/readme_01.jpg?raw=true)
