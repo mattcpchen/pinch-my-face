@@ -1,0 +1,4 @@
+1: npm install will fail
+2: when you run npm build 
+   >> fail due to sass  
+   >> remove this; then it will work ("node-sass": "^4.14.1")
