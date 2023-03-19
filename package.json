@@ -13,7 +13,9 @@
     "type": "git",
     "url": "https://github.com/mattcpchen/pinch-my-face.git"
   },
-  "keywords": ["RxJS"],
+  "keywords": [
+    "RxJS"
+  ],
   "scripts": {
     "dev:client": "NODE_ENV=devForClient node server",
     "dev:server": "NODE_ENV=devForServer nodemon server",
@@ -41,7 +43,6 @@
     "extract-text-webpack-plugin": "^1.0.1",
     "json-loader": "^0.5.4",
     "method-override": "^2.3.6",
-    "node-sass": "^4.14.1",
     "rimraf": "^2.5.4",
     "rxjs": "^5.0.0-rc.1",
     "sass-loader": "^4.0.2",
